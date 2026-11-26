@@ -1,0 +1,11 @@
+{smcl}
+{* 11jan2006}{...}
+{hline}
+help for {hi:condgraph}
+{hline}
+
+{p}{cmd:condgraph} is an out-of-date command.
+
+{p}{cmd:condivreg} now provides confidence sets; see
+{help condivreg:help condivreg}.
+

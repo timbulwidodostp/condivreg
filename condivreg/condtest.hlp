@@ -1,0 +1,11 @@
+{smcl}
+{* 11jan2006}{...}
+{hline}
+help for {hi:condtest}
+{hline}
+
+{p}{cmd:condtest} is an out-of-date command.
+
+{p}{cmd:condivreg} has all the features of condtest; see
+{help condivreg:help condivreg}.
+

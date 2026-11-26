@@ -1,0 +1,111 @@
+{smcl}
+{* 11jan2006}{...}
+{hline}
+help for {hi:condivreg}
+{hline}
+
+{title:Instrumental variables regression with potentially weak instruments}
+
+{p 8 14 2}{cmd:condivreg} {it:depvar} [{it:varlist1}]
+{cmd:(}{it:endogvar}{cmd:=}{it:varlist_iv}{cmd:)} 
+[{cmd:if} {it:exp}] [{cmd:in} {it:range}]
+{cmd:[,} {{cmd:2sls} | {cmd:liml}}
+{cmd:nocons} {cmd:noinstcons}  {cmd:test}{cmd:(}{it:#}{cmd:)}
+{cmd:ar} {cmd:lm} {cmd:interval} {cmd:level}{cmd:(}{it:#}{cmd:)}
+{cmd:]}
+
+
+{title:Description}
+
+{p 4 4 2}
+{cmd:condivreg} fits a linear regression using 2SLS or LIML of
+{it:depvar} on {it:varlist1} and {it:endogvar} using {it:varlist_iv}
+(along with {it:varlist1}) as instruments for {it:varlist2}.  It also
+reports the confidence region and {it:p}-value for the coefficient on
+the single endogenous variable based on the conditional likelihood ratio
+(CLR) approach developed by Moreira (2003). Computation of the
+conditional {it:p}-value for the CLR test uses the algorithm of Andrews,
+Moreira and Stock (2005). Andrews, Moreira and Stock (2004) showed that
+the CLR test is approximately optimal.  In particular, it dominates the
+Anderson and Rubin (1949) test and the Lagrange Multiplier (score) test
+proposed independently by Kleibergen (2002) and Moreira (2001). Results
+for the Anderson-Rubin and score tests are optionally provided. 
+
+
+{title:Options}
+
+{p 4 8 2}
+{cmd:2sls} requests that the 2SLS estimator be used. {cmd:2sls} is the default.
+
+{p 4 8 2}
+{cmd:liml} requests that the LIML estimator be used. {cmd:2sls} and
+{cmd:liml} are mutually exclusive.
+
+{p 4 8 2}
+{cmd:nocons} indicates that no constant term is to be included in the
+regression equation. The default is to include a constant term.
+
+{p 4 8 2}
+{cmd:noinstcons} indicates that no constant term is to be included in
+the first-stage regression of the endogenous variable on the instruments
+and exogenous variables. Stata's {cmd:ivreg} command excludes a constant
+from both equations if its {cmd:noconstant} option is specified. 
+Usually one will not want to specify {cmd:noinstcons} unless
+{cmd:nocons} is also specified, but we give the user the option to
+experiment. By default a constant term is included.
+
+{p 4 8 2}
+{cmd:test(}{it:#}{cmd:)} contains the hypothesized value of the
+endogenous variable's coefficient. The default is {cmd:test(0)}.
+
+{p 4 8 2}
+{cmd:ar} provides the coverage-corrected confidence set and
+size-corrected test based on the Anderson-Rubin statistic. 
+
+{p 4 8 2}
+{cmd:lm} provides the coverage-corrected confidence set and
+size-corrected test based on the Lagrange multiplier (score) statistic.
+
+{p 4 8 2}
+{cmd:interval} displays the confidence interval, which is the minimal
+convex interval containing the coverage-corrected confidence set. 
+
+{p 4 8 2}
+{cmd:level(}{it:#}{cmd:)} specifies the nominal significance level, as 
+a percentage, to be used when displaying results.  The default is 
+{cmd:level(95)} or as set by {cmd:set level}.  See {help level}.
+
+
+{title:Example}
+
+{p 4 8 2}{cmd:. condivreg y1 x1 (y2 = z1 z2 z3), liml interval}{p_end}
+
+{p 4 8 2}{cmd:. condivreg y1 x1 (y2 = z1 z2 z3 z4), ar lm test(0.1) }{p_end}
+
+
+{title:Also see}
+
+{p 4 8 2}Anderson, T.W. and H. Rubin (1949): "Estimators of the Parameters of a
+Single Equation in a Complete Set of Stochastic Equations,"
+{it:Annals of Math. Statistics, 21, 570-582.}
+
+{p 4 8 2}Andrews, D., Moreira, M. and J. Stock (2004): "Optimal Invariant Tests for
+Instrumental Variables Regression," {it:Unpublished manuscript.}
+
+{p 4 8 2}Andrews, D., Moreira, M. and J. Stock (2005): "Performance of Conditional 
+Wald Tests in IV Regression with Weak Instruments," {it:Journal of Econometrics,}
+forthcoming.
+
+{p 4 8 2}Kleibergen, F. (2002): "Pivotal Statistics for Testing Structural Parameters in
+Instrumental Variables Regression," {it:Econometrica, 70, 1781-1803.}
+
+{p 4 8 2}Moreira, M. (2001): "Tests with Correct Size when Instruments Can 
+Be Arbitrarily Weak," {it:Center for Labor Economics Working Paper, 37,} 
+UC Berkeley.
+
+{p 4 8 2}Moreira, M. (2003): "A Conditional Likelihood Ratio Test for
+Structural Models," {it:Econometrica, 71, 1027-1048.}
+
+{p 4 13 2}Manual:  {hi:[R] ivreg}
+{p 4 13 2}On-line:  help for {help condtest}, {help condgraph}; {help ivreg}
+
