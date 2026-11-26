@@ -1,6 +1,8 @@
 # condivreg
 Instrumental variables regression with potentially weak instruments Use condivreg With STATA 19
 
+https://www.youtube.com/watch?v=QTsc0cfHQp0
+
 Olah Data Semarang
 
 WA: +6285227746673 (085227746673)
