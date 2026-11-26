@@ -1,4 +1,8 @@
-D 'DEA': Data envelopment analysis
+D 'condivreg': Instrumental variables regression with potentially weak instruments Use condivreg With STATA 19
 D
-F dea.ado
-F dea.sthlp
+F condgraph.ado
+F condgraph.hlp
+F condivreg.ado
+F condivreg.hlp
+F condtest.ado
+F condtest.hlp
